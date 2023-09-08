@@ -26,7 +26,7 @@ function TableList() {
       redirect: "follow",
     };
 
-    fetch('http://127.0.0.1:5001/api/items')
+    fetch('http://api.jiaoyibiji.com/min_hq?code=300030&fre=1&token=ced14d314eb69351')
       .then((response) => {
         return response.json()
       })
@@ -59,12 +59,18 @@ function TableList() {
                   </thead>
                   <tbody>
                     {
-                      names.map(function (name, index) {
-                        return <tr><td>Hello, {name}!</td></tr>
+                      posts.map(function (post, index) {
+                        return <tr>
+                          <td>{post.day}</td>
+                          <td>{post.open}</td>
+                          <td>{post.high}</td>
+                          <td>{post.low}</td>
+                          <td>{post.close}</td>
+                          <td>{post.volume}</td>
+                        </tr>
                       })
-                    }
-                    {
-                      posts.length
+
+
                     }
                   </tbody>
                 </Table>
