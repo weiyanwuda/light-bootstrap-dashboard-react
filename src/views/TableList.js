@@ -26,7 +26,7 @@ function TableList() {
       redirect: "follow",
     };
 
-    fetch('http://api.jiaoyibiji.com/min_hq?code=300030&fre=1&token=ced14d314eb69351')
+    fetch('http://127.0.0.1:5001/api/items', requestOptions)
       .then((response) => {
         return response.json()
       })
