@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 
 // react-bootstrap components
 import {
@@ -13,11 +13,64 @@ import {
   Col,
 } from "react-bootstrap";
 
+
+
 function TableList() {
+  var names = ['Alice', 'Emily', 'Kate'];
+  //asdasdasdad
+  const [posts, setPosts] = useState([]);
+
+  const getData = () => {
+    var requestOptions = {
+      method: "GET",
+      redirect: "follow",
+    };
+
+    fetch('http://127.0.0.1:5001/api/items')
+      .then((response) => {
+        return response.json()
+      })
+      .then((result) => setPosts(result))
+      .catch((error) => console.log("error", error));
+  };
+
+  useEffect(() => {
+    getData();
+  }, []);
+  //asdsadasd
   return (
     <>
       <Container fluid>
         <Row>
+          <Col md="12">
+            <Card className="strpied-tabled-with-hover">
+              <Card.Header>
+                <Card.Title as="h4">来试试好玩的</Card.Title>
+                <p className="card-category">
+                  副标题
+                </p>
+              </Card.Header>
+              <Card.Body className="table-full-width table-responsive px-0">
+                <Table className="table-hover table-striped">
+                  <thead>
+                    <tr>
+                      <th className="border-0">ID</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {
+                      names.map(function (name, index) {
+                        return <tr><td>Hello, {name}!</td></tr>
+                      })
+                    }
+                    {
+                      posts.length
+                    }
+                  </tbody>
+                </Table>
+              </Card.Body>
+            </Card>
+          </Col>
           <Col md="12">
             <Card className="strpied-tabled-with-hover">
               <Card.Header>
